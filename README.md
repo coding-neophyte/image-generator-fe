@@ -4,11 +4,11 @@ This app allows users to type in a prompt, which will then return an image (gene
 
 # Tech Stack
 
--Node JS
--Express
--React
--Tailwind
+- Node JS
+- Express
+- React
+- Tailwind
 
 # API Used
--Dall-E Open AI API 
+- Dall-E Open AI API 
 
