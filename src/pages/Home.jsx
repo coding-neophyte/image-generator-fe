@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Card, Loader, Form } from '../components';
+import { Loader, Form } from '../components';
+import RenderPost from '../components/RenderPost';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,11 +30,16 @@ const Home = () => {
         )}
         {searchText && (
           <h2 className="font-medium text-[#666e75] text-xl mb-3">
-            Search Results for: <span className='text-[#222328]'>{searchText}</span>
+            Search Results for:{' '}
+            <span className="text-[#222328]">{searchText}</span>
           </h2>
         )}
-        <div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
-          
+        <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
+          {searchText ? (
+            <RenderPost data={[]} title="No Results Found" />
+          ) : (
+            <RenderPost data={[]} title="No Posts Found" />
+          )}
         </div>
       </div>
     </section>
