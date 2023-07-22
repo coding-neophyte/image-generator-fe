@@ -9,6 +9,6 @@ This app allows users to type in a prompt, which will then return an image (gene
 -React
 -Tailwind
 
-#API Used
+# API Used
 -Dall-E Open AI API 
 
