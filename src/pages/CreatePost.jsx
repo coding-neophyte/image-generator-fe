@@ -22,7 +22,13 @@ const CreatePost = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const randomPromptHandler = () => {}
+  const randomPromptHandler = () => {
+    const randomPrompt = getRandomPrompts(formData.prompt);
+    setFormData({...formData, prompt: randomPrompt})
+  };
+
+
+  const handleImageGeneration = () => {};
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -46,12 +52,52 @@ const CreatePost = () => {
             labelText="Prompt"
             type="text"
             name="prompt"
-            placeholder="A comic book cover of a superhero wearing headphones"
+            placeholder="Ex: 'A comic book cover of a superhero wearing headphones'"
             value={formData.prompt}
             handleChange={handleChange}
             isGeneratingImage
             randomPromptHandler={randomPromptHandler}
           />
+          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
+            {formData.photo ? (
+              <img
+                src={formData.photo}
+                alt={formData.prompt}
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <img
+                src={preview}
+                alt="preview image"
+                className="w-9/12 h-9/12 object-contain opacity-40"
+              />
+            )}
+            {isGeneratingImage && (
+              <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
+                <Loader />
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="mt-5 flex gap-5">
+          <button
+            type="button"
+            onClick={handleImageGeneration}
+            className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            {isGeneratingImage ? 'Image Generating...' : 'Generate Image'}
+          </button>
+        </div>
+        <div className="mt-10">
+          <p className="mt-2 text-[#666e75] text-14px">
+            You can share your created images with other users
+          </p>
+          <button
+            type="submit"
+            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            {isLoading ? 'Sharing Image...' : 'Share Image'}
+          </button>
         </div>
       </form>
     </section>
